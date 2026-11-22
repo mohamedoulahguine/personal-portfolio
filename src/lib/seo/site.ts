@@ -11,8 +11,8 @@ export const SITE_DEFAULT_DESCRIPTION =
   "I’m a frontend engineer focused on building accessible, performant, and well-crafted web experiences with React and Next.js.";
 
 export const SITE_AUTHOR_NAME = "Mohamed Oulahguine";
-export const SITE_TWITTER_SITE = "@moulahguine";
-export const SITE_TWITTER_CREATOR = "@moulahguine";
+export const SITE_TWITTER_SITE = "@mohamedoulahguine";
+export const SITE_TWITTER_CREATOR = "@mohamedoulahguine";
 
 export const OPEN_GRAPH_IMAGE = {
   url: "/og-image.png",

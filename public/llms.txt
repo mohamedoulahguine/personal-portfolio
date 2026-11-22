@@ -16,14 +16,14 @@ This site is the canonical source for Mohamed's professional profile, projects, 
 
 ## Featured project
 - [Personal portfolio](https://mohamedoulahguine.dev/projects): This Next.js portfolio, built with TypeScript, Sass, Motion, and MDX.
-- [Personal portfolio source code](https://github.com/moulahguine/personal-portfolio): Public GitHub repository for this website.
+- [Personal portfolio source code](https://github.com/mohamedoulahguine/personal-portfolio): Public GitHub repository for this website.
 
 ## Feeds and discovery
 - [Blog RSS feed](https://mohamedoulahguine.dev/blog/feed.xml): RSS feed for published articles.
 - [Sitemap](https://mohamedoulahguine.dev/sitemap.xml): Canonical list of indexable site pages.
 
 ## Profiles
-- [GitHub](https://github.com/moulahguine): Public source code and development activity.
-- [LinkedIn](https://linkedin.com/in/moulahguine): Professional profile.
+- [GitHub](https://github.com/mohamedoulahguine): Public source code and development activity.
+- [LinkedIn](https://linkedin.com/in/mohamedoulahguine): Professional profile.
 - [Bluesky](https://bsky.app/profile/mohamedoulahguine.dev): Social profile.
 - [Email Mohamed](mailto:hello@mohamedoulahguine.com): Direct email contact.

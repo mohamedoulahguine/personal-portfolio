@@ -60,9 +60,9 @@ export function createSocialLink(
 
 // Profile links (also used on blog bylines via AUTHORS).
 export const OWNER_PROFILE_SOCIAL_LINKS: SocialLink[] = [
-  createSocialLink("linkedin", "https://linkedin.com/in/moulahguine"),
+  createSocialLink("linkedin", "https://linkedin.com/in/mohamedoulahguine"),
   createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
-  createSocialLink("github", "https://github.com/moulahguine"),
+  createSocialLink("github", "https://github.com/mohamedoulahguine"),
 ];
 
 // ---- site-owner social links ----

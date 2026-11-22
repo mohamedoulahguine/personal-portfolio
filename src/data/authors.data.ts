@@ -1,9 +1,12 @@
 import type { StaticImageData } from "next/image";
-import moulahguineAvatar from "@/assets/images/authors/moulahguine.png";
-import { OWNER_PROFILE_SOCIAL_LINKS, type SocialLink } from "./social-links.data";
+import mohamedoulahguineAvatar from "@/assets/images/authors/mohamedoulahguine.png";
+import {
+  OWNER_PROFILE_SOCIAL_LINKS,
+  type SocialLink,
+} from "./social-links.data";
 
 // ---- author ----
-export const AUTHOR_IDS = ["moulahguine"] as const;
+export const AUTHOR_IDS = ["mohamedoulahguine"] as const;
 export type AuthorId = (typeof AUTHOR_IDS)[number];
 
 export interface Author {
@@ -15,16 +18,16 @@ export interface Author {
 }
 
 export const AUTHORS: Record<AuthorId, Author> = {
-  moulahguine: {
-    id: "moulahguine",
+  mohamedoulahguine: {
+    id: "mohamedoulahguine",
     name: "Mohamed Oulahguine",
     role: "Frontend Developer",
-    avatar: moulahguineAvatar,
+    avatar: mohamedoulahguineAvatar,
     socials: OWNER_PROFILE_SOCIAL_LINKS,
   },
 };
 
-export const DEFAULT_AUTHOR_ID: AuthorId = "moulahguine";
+export const DEFAULT_AUTHOR_ID: AuthorId = "mohamedoulahguine";
 
 // ---- helpers ----
 export function isAuthorId(value: string): value is AuthorId {
