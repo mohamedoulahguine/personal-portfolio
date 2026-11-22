@@ -20,7 +20,15 @@ interface ProjectsGridProps {
 const { primaryProjects } = PROJECTS_SECTION_DATA;
 const { projects: projectsData } = PROJECTS_PAGE_DATA;
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  variant,
+}: {
+  project: Project;
+  index: number;
+  variant: ProjectsGridVariant;
+}) {
   const projectNumber = String(index + 1).padStart(2, "0");
   const actions = getProjectActions(project);
   const demoAction = actions.find((action) => action.id === "demo");
@@ -28,7 +36,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <li
-      className={styles.projects__card}
+      className={`${styles.projects__card} ${variant === "primary" ? "" : styles["projects__card--modal"]}`}
       style={{ "--project-color": project.color } as React.CSSProperties}
     >
       <header className={styles["projects__card-meta"]}>
@@ -143,7 +151,12 @@ export default function ProjectsGrid({
   return (
     <ul className={styles.projects}>
       {projects.map((project, index) => (
-        <ProjectCard key={project.id} project={project} index={index} />
+        <ProjectCard
+          key={project.id}
+          project={project}
+          index={index}
+          variant={variant}
+        />
       ))}
     </ul>
   );

@@ -15,7 +15,11 @@
   &__card {
     @include flex-column;
     min-width: 0;
-    background-color: transparent;
+    background-color: var(--background);
+
+    &--modal {
+      background-color: var(--surface);
+    }
 
     &-meta {
       @include flex-between;
