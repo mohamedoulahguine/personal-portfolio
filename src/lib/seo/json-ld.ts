@@ -2,6 +2,7 @@ import { DEFAULT_AUTHOR_ID, ROUTES, type Author, RouteId } from "@/data";
 
 import {
   OPEN_GRAPH_IMAGE,
+  SITE_AUTHOR_NAME,
   SITE_DEFAULT_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
@@ -196,7 +197,11 @@ export function getProfilePageJsonLd(routeId: RouteId) {
     "@id": `${url}#page`,
     url,
     isPartOf: { "@id": WEBSITE_ID },
-    mainEntity: { "@id": PERSON_ID },
+    mainEntity: {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: SITE_AUTHOR_NAME,
+    },
   };
 }
 
