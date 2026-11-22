@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import moulahguineAvatar from "@/assets/images/authors/moulahguine.png";
-import { createSocialLink, type SocialLink } from "./social-links.data";
+import { OWNER_PROFILE_SOCIAL_LINKS, type SocialLink } from "./social-links.data";
 
 // ---- author ----
 export const AUTHOR_IDS = ["moulahguine"] as const;
@@ -20,14 +20,7 @@ export const AUTHORS: Record<AuthorId, Author> = {
     name: "Mohamed Oulahguine",
     role: "Frontend Developer",
     avatar: moulahguineAvatar,
-    socials: [
-      createSocialLink("linkedin", "https://linkedin.com/in/moulahguine"),
-      createSocialLink(
-        "bluesky",
-        "https://bsky.app/profile/mohamedoulahguine.dev",
-      ),
-      createSocialLink("github", "https://github.com/moulahguine"),
-    ],
+    socials: OWNER_PROFILE_SOCIAL_LINKS,
   },
 };
 

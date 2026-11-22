@@ -58,11 +58,16 @@ export function createSocialLink(
   };
 }
 
+// Profile links (also used on blog bylines via AUTHORS).
+export const OWNER_PROFILE_SOCIAL_LINKS: SocialLink[] = [
+  createSocialLink("linkedin", "https://linkedin.com/in/moulahguine"),
+  createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
+  createSocialLink("github", "https://github.com/moulahguine"),
+];
+
 // ---- site-owner social links ----
 export const SOCIAL_LINKS: SocialLink[] = [
-  createSocialLink("linkedin", "https://linkedin.com/in/mohamedoulahguine"),
-  createSocialLink("bluesky", "https://bsky.app/profile/mohamedoulahguine.dev"),
-  createSocialLink("github", "https://github.com/mohamedoulahguine"),
+  ...OWNER_PROFILE_SOCIAL_LINKS,
   createSocialLink("email", "mailto:mohamedoulahguine@gmail.com"),
   createSocialLink("rss", BLOG_RSS_PATH, "Subscribe via RSS"),
 ];
