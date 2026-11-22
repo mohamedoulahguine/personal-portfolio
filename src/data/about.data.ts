@@ -1,4 +1,4 @@
-import { experienceYears } from "@/lib";
+import { experienceYears, OG_IMAGES } from "@/lib";
 
 export const ABOUT_SECTION_DATA = {
   headingId: "about-heading",
@@ -11,6 +11,7 @@ export const ABOUT_METADATA = {
   title: "About Me",
   description:
     "From taking computers apart as a kid to building software today. A little story about how I got into programming, frontend development, and Software Engineering.",
+  image: OG_IMAGES.about,
 };
 
 export const ABOUT_PAGE_HEADER = {

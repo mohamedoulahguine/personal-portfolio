@@ -7,6 +7,7 @@ import {
   createPageMetadata,
   getBlogPostingJsonLd,
   getRouteBreadcrumbJsonLd,
+  getBlogPostOgImage,
   JsonLd,
 } from "@/lib";
 
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     variant: "article",
     title: post.title,
     description: post.description,
+    image: getBlogPostOgImage(post.slug),
     publishedTime: toIsoDateTime(post.dateTime),
     modifiedTime: post.updated ? toIsoDateTime(post.updated) : undefined,
     authors: [getAuthorUrl(author)],

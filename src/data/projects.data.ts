@@ -1,3 +1,4 @@
+import { OG_IMAGES } from "@/lib";
 import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
@@ -106,6 +107,7 @@ export const PROJECTS_META_DATA = {
   title: "Projects",
   description:
     "Explore projects I've built across frontend development, software engineering, and digital experiences.",
+  image: OG_IMAGES.projects,
 };
 
 // ---- page ----

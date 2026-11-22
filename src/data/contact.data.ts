@@ -1,3 +1,4 @@
+import { OG_IMAGES } from "@/lib";
 import { FaCheck } from "react-icons/fa";
 import { FiRotateCcw, FiSend } from "react-icons/fi";
 
@@ -11,7 +12,8 @@ export const CONTACT_FORM_DATA: ContactFormConfig = {
   clearLabel: "Clear form",
   sendingLabel: "Sending...",
   successMessage: "Thanks for reaching out. I’ll get back to you soon.",
-  errorMessage: "Something went wrong while sending your message. Please try again.",
+  errorMessage:
+    "Something went wrong while sending your message. Please try again.",
   validationMessage: "Please fix the highlighted fields and try again.",
   networkErrorMessage:
     "Could not reach the server. Check your connection or disable ad blockers for this site, then try again.",
@@ -30,6 +32,7 @@ export const CONTACT_SECTION_DATA = {
 export const CONTACT_META_DATA = {
   title: "Contact",
   description: "Get in touch about work, collaboration, or a project idea.",
+  image: OG_IMAGES.contact,
 };
 
 export const CONTACT_PAGE_DATA = {

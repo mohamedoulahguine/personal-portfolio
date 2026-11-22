@@ -4,6 +4,7 @@ import {
   BLOG_RSS_PATH,
   isNetlifyPreview,
   MANIFEST_PATH,
+  OG_IMAGES,
   OPEN_GRAPH_IMAGE,
   SITE_AUTHOR_NAME,
   SITE_DEFAULT_DESCRIPTION,
@@ -106,7 +107,7 @@ export const rootMetadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_DEFAULT_TITLE,
     description: SITE_DEFAULT_DESCRIPTION,
-    images: [OPEN_GRAPH_IMAGE],
+    images: [{ ...OPEN_GRAPH_IMAGE, url: OG_IMAGES.home }],
   },
   twitter: {
     card: "summary_large_image",
@@ -114,7 +115,7 @@ export const rootMetadata: Metadata = {
     description: SITE_DEFAULT_DESCRIPTION,
     site: SITE_TWITTER_SITE,
     creator: SITE_TWITTER_CREATOR,
-    images: [OPEN_GRAPH_IMAGE.url],
+    images: [OG_IMAGES.home],
   },
   alternates: {
     canonical: SITE_URL,

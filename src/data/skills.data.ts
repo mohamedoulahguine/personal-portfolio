@@ -477,9 +477,9 @@ export const SKILLS_SECTION_DATA = {
 export const SKILLS_META_DATA = {
   title: "Skills",
   description:
-    "Here you'll find the technologies I work with regularly. I’ve left out the ones I rarely use and the ones I’m still learning.",
+    "Here you'll find the technologies I work with regularly. I've left out the ones I rarely use and the ones I'm still learning.",
+  image: "/open-graph-image/skills Page.png",
 };
-
 // ---- page ----
 export const SKILLS_PAGE_DATA = {
   headerPage: {

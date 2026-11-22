@@ -1,3 +1,4 @@
+import { OG_IMAGES } from "@/lib";
 import { getBlogPosts } from "@/server/blog.server";
 import type { AuthorId } from "./authors.data";
 
@@ -40,6 +41,7 @@ export const BLOG_META_DATA = {
   title: "Blogs",
   description:
     "Notes, lessons, and things I've learned while building software and growing as a developer.",
+  image: OG_IMAGES.blog,
 };
 
 // ---- page ----
