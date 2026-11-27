@@ -1,4 +1,12 @@
-import { DEFAULT_AUTHOR_ID, ROUTES, type Author, RouteId } from "@/data";
+import {
+  AUTHORS,
+  DEFAULT_AUTHOR_ID,
+  HERO_DATA,
+  ROUTES,
+  SOCIAL_LINKS,
+  type Author,
+  RouteId,
+} from "@/data";
 
 import {
   OPEN_GRAPH_IMAGE,
@@ -41,7 +49,8 @@ export function getPersonJsonLd({
   techStack,
   sameAs,
   nationality,
-}: PersonJsonLdInput) {
+  image,
+}: PersonJsonLdInput & { image?: string }) {
   const [locality, country] = location.split(",").map((part) => part.trim());
 
   return {
@@ -52,7 +61,7 @@ export function getPersonJsonLd({
     jobTitle,
     url: SITE_URL,
     mainEntityOfPage: SITE_URL,
-    image: `${SITE_URL}${OPEN_GRAPH_IMAGE.url}`,
+    image: toAbsoluteUrl(image ?? OPEN_GRAPH_IMAGE.url),
     sameAs,
     address: {
       "@type": "PostalAddress",
@@ -64,6 +73,24 @@ export function getPersonJsonLd({
       : {}),
     knowsAbout: techStack,
   };
+}
+
+// ---- site owner ----
+export function getSiteOwnerJsonLd() {
+  const { profileInfo } = HERO_DATA;
+  const owner = AUTHORS[DEFAULT_AUTHOR_ID];
+
+  return getPersonJsonLd({
+    name: profileInfo.name,
+    jobTitle: profileInfo.role,
+    location: profileInfo.location,
+    techStack: profileInfo.techStack,
+    nationality: profileInfo.origin,
+    sameAs: SOCIAL_LINKS.filter((link) => link.external).map(
+      (link) => link.href,
+    ),
+    image: owner.avatar.src,
+  });
 }
 
 // ---- website ----
@@ -122,7 +149,7 @@ export function getBlogPostingJsonLd({
   wordCount,
   keywords,
 }: BlogPostingJsonLdInput) {
-  const url = `${SITE_URL}${ROUTES.blogs.href}/${slug}`;
+  const url = `${SITE_URL}${ROUTES.blog.href}/${slug}`;
 
   return {
     "@context": "https://schema.org",
@@ -208,6 +235,8 @@ export function getProfilePageJsonLd(routeId: RouteId) {
 // ---- contact page ----
 export function getContactPageJsonLd(routeId: RouteId) {
   const url = routeUrl(routeId);
+  const emailLink = SOCIAL_LINKS.find((link) => link.id === "email");
+  const email = emailLink?.href.replace(/^mailto:/, "");
 
   return {
     "@context": "https://schema.org",
@@ -216,6 +245,21 @@ export function getContactPageJsonLd(routeId: RouteId) {
     url,
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
+    ...(email
+      ? {
+          mainEntity: {
+            "@type": "Person",
+            "@id": PERSON_ID,
+            name: SITE_AUTHOR_NAME,
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "personal",
+              email,
+              availableLanguage: ["English", "Arabic", "French"],
+            },
+          },
+        }
+      : {}),
   };
 }
 

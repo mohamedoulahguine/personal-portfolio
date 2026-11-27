@@ -28,7 +28,7 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
   const skills = variant === "primary" ? primarySkills : skillsData;
 
   return (
-    <ul className={styles.skills__grid}>
+    <ol className={styles.skills__grid}>
       {skills.map((skill) => {
         const SkillIcon = skill.icon;
         const layoutId = `skill-${variant}-${skill.id}`;
@@ -98,7 +98,10 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
                           : undefined
                       }
                     />
-                    <ProjectsGrid projects={relatedProjects} />
+                    <ProjectsGrid
+                      className={styles["skills__modal-projects-card"]}
+                      projects={relatedProjects}
+                    />
                   </section>
                 ) : null}
               </Modal>
@@ -106,6 +109,6 @@ export default function SkillsGrid({ variant = "all" }: SkillsGridProps) {
           </li>
         );
       })}
-    </ul>
+    </ol>
   );
 }

@@ -10,7 +10,7 @@ import { getBlogPosts } from "@/server/blog.server";
 
 export const dynamic = "force-static";
 
-const BLOG_URL = `${SITE_URL}${ROUTES.blogs.href}`;
+const BLOG_URL = `${SITE_URL}${ROUTES.blog.href}`;
 const FEED_URL = `${SITE_URL}${BLOG_RSS_PATH}`;
 
 // XML 1.0 forbids raw &, <, > in text; also strip control chars that break parsers.

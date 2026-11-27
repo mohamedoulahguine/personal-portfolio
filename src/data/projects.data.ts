@@ -3,14 +3,13 @@ import type { IconType } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 
+// ---- constants ----
 const PROJECT_CARD_PREVIEW_VIDEO_WIDTH = 800;
 const PROJECT_CARD_PREVIEW_VIDEO_HEIGHT = 500;
-
 const PORTFOLIO_PREVIEW_VIDEO = `https://ik.imagekit.io/moulahguine/myportfolio/projectMedia/myportfolio.mp4?updatedAt=1794910963344&tr=w-${PROJECT_CARD_PREVIEW_VIDEO_WIDTH},h-${PROJECT_CARD_PREVIEW_VIDEO_HEIGHT},fo-top`;
-
 const FEATURED_PROJECTS_LIMIT = 4;
 
-// ---- project ----
+// ---- interfaces ----
 export interface Project {
   id: string;
   title: string;
@@ -34,6 +33,7 @@ export interface ProjectAction {
   external: boolean;
 }
 
+// ---- markup for the project actions data ----
 const PROJECT_ACTIONS = [
   {
     id: "demo",
@@ -50,10 +50,12 @@ const PROJECT_ACTIONS = [
   },
 ] as const;
 
+// ---- get projects by skill id ----
 export function getProjectsBySkillId(skillId: string): Project[] {
   return PROJECTS.filter((project) => project.tagIds.includes(skillId));
 }
 
+// ---- get project actions ----
 export function getProjectActions(project: Project): ProjectAction[] {
   return PROJECT_ACTIONS.map(({ id, label, icon, hrefKey, ...rest }) => {
     const href = project[hrefKey];
@@ -64,7 +66,7 @@ export function getProjectActions(project: Project): ProjectAction[] {
   });
 }
 
-// ---- projects ----
+// ---- markup for the projects data ----
 const PROJECTS: Project[] = [
   {
     id: "portfolio",
@@ -75,7 +77,16 @@ const PROJECTS: Project[] = [
       "It's my website that represents my work as a frontend developer, including the projects I build and the things I learn along the way.",
     video: PORTFOLIO_PREVIEW_VIDEO,
     color: "#ffe023",
-    tagIds: ["nextjs", "typescript", "sass", "motion", "mdx"],
+    tagIds: [
+      "nextjs",
+      "typescript",
+      "sass",
+      "motion",
+      "mdx",
+      "zod",
+      "react-hook-form",
+      "react-aria-components",
+    ],
     details: "/projects",
     demo: "/",
     github: "https://github.com/mohamedoulahguine/personal-portfolio",
@@ -83,13 +94,14 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// ---- constants ----
 const PRIMARY_PROJECTS = PROJECTS.filter((project) => project.primary).slice(
   0,
   FEATURED_PROJECTS_LIMIT,
 );
 const REMAINING_PROJECTS_COUNT = PROJECTS.length - PRIMARY_PROJECTS.length;
 
-// ---- sections ----
+// ---- section data ----
 export const PROJECTS_SECTION_DATA = {
   projectsHeadingId: "projects-heading",
 
@@ -110,7 +122,7 @@ export const PROJECTS_META_DATA = {
   image: OG_IMAGES.projects,
 };
 
-// ---- page ----
+// ---- page data ----
 export const PROJECTS_PAGE_DATA = {
   headerPage: {
     title: "Projects",

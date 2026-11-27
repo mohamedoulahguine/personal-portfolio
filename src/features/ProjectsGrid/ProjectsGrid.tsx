@@ -1,5 +1,6 @@
 import { GoArrowUpRight } from "react-icons/go";
 import { Link } from "@/components";
+import { ClassNameProps } from "@/types";
 import {
   PROJECTS_PAGE_DATA,
   PROJECTS_SECTION_DATA,
@@ -11,7 +12,8 @@ import styles from "./ProjectsGrid.module.scss";
 
 type ProjectsGridVariant = "primary" | "all";
 
-interface ProjectsGridProps {
+// ---- interfaces ----
+interface ProjectsGridProps extends ClassNameProps {
   variant?: ProjectsGridVariant;
   projects?: Project[];
 }
@@ -20,15 +22,17 @@ interface ProjectsGridProps {
 const { primaryProjects } = PROJECTS_SECTION_DATA;
 const { projects: projectsData } = PROJECTS_PAGE_DATA;
 
+// ---- project card ----
 function ProjectCard({
+  className,
   project,
   index,
-  variant,
 }: {
+  className?: string;
   project: Project;
   index: number;
-  variant: ProjectsGridVariant;
 }) {
+  // ---- data ----
   const projectNumber = String(index + 1).padStart(2, "0");
   const actions = getProjectActions(project);
   const demoAction = actions.find((action) => action.id === "demo");
@@ -36,7 +40,7 @@ function ProjectCard({
 
   return (
     <li
-      className={`${styles.projects__card} ${variant === "primary" ? "" : styles["projects__card--modal"]}`}
+      className={[styles.projects__card, className].filter(Boolean).join(" ")}
       style={{ "--project-color": project.color } as React.CSSProperties}
     >
       <header className={styles["projects__card-meta"]}>
@@ -86,26 +90,34 @@ function ProjectCard({
           {project.description}
         </p>
 
-        <ol
+        <ul
           className={styles["projects__card-tags"]}
           aria-label="Technologies used"
         >
-          {project.tagIds.map((tag) => (
+          {project.tagIds.slice(0, 3).map((tag) => (
             <li key={tag} className={styles["projects__card-tag"]}>
               {tag}
             </li>
           ))}
-        </ol>
+          {project.tagIds.length > 3 ? (
+            <li
+              className={styles["projects__card-tag"]}
+              aria-label={`${project.tagIds.length - 3} more technologies`}
+            >
+              +{project.tagIds.length - 3} others
+            </li>
+          ) : null}
+        </ul>
 
         <div className={styles["projects__card-actions"]}>
           <Link
             href={project.details}
             size="sm"
             variant="primary"
-            label="View Details"
+            label="Explore Project"
             icon={<GoArrowUpRight aria-hidden="true" />}
             iconPosition="right"
-            aria-label={`View details for ${project.title}`}
+            aria-label={`View more details for ${project.title}`}
           />
 
           <div className={styles["projects__card-actions-secondary"]}>
@@ -118,7 +130,7 @@ function ProjectCard({
                 isDisabled={demoAction.href === "/"}
                 target={demoAction.external ? "_blank" : undefined}
                 rel={demoAction.external ? "noopener noreferrer" : undefined}
-                aria-label={`${project.title} — ${demoAction.label}`}
+                aria-label={demoAction.label}
               />
             ) : null}
 
@@ -130,7 +142,7 @@ function ProjectCard({
                 icon={<githubAction.icon aria-hidden="true" />}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${project.title} — ${githubAction.label}`}
+                aria-label={githubAction.label}
               />
             ) : null}
           </div>
@@ -142,6 +154,7 @@ function ProjectCard({
 
 // ---- projects grid ----
 export default function ProjectsGrid({
+  className,
   variant = "all",
   projects: projectsProp,
 }: ProjectsGridProps) {
@@ -152,10 +165,10 @@ export default function ProjectsGrid({
     <ul className={styles.projects}>
       {projects.map((project, index) => (
         <ProjectCard
+          className={className}
           key={project.id}
           project={project}
           index={index}
-          variant={variant}
         />
       ))}
     </ul>

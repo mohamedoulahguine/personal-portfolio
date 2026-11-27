@@ -4,6 +4,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 
 import styles from "./HeaderSection.module.scss";
 
+// ---- interfaces ----
 interface HeaderSectionLink {
   href: string;
   label: string;

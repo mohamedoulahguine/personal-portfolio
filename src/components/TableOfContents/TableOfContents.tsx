@@ -7,11 +7,13 @@ import { Link } from "@/components";
 
 import styles from "./TableOfContents.module.scss";
 
+// ---- interfaces ----
 type TocItem = {
   id: string;
   title: string;
 };
 
+// ---- constants ----
 const SECTION_SELECTOR = "#main-content section[id]";
 const HEADING_SELECTOR = "h2";
 
@@ -22,12 +24,12 @@ const INDICATOR_TRANSITION = {
   duration: 0.5,
 } as const;
 
-// this function is used to read the sections from the document
+// ---- read sections ----
 function readSections() {
   return Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
 }
 
-// this function is used to convert the sections to toc items
+// ---- convert sections to toc items ----
 function toTocItems(sections: HTMLElement[]): TocItem[] {
   return sections
     .map((section) => ({
@@ -37,7 +39,7 @@ function toTocItems(sections: HTMLElement[]): TocItem[] {
     .filter(({ title }) => title);
 }
 
-// ---- table of contents ----
+// ---- component ----
 export default function TableOfContents({
   title = "On this page",
 }: {
@@ -51,7 +53,7 @@ export default function TableOfContents({
     setItems(toTocItems(readSections()));
   }, [pathname]);
 
-  // track the active section by scroll position and drive the indicator
+  // ---- track the active section by scroll position and drive the indicator ----
   useEffect(() => {
     if (items.length < 2) return;
 
@@ -110,7 +112,7 @@ export default function TableOfContents({
                   {itemTitle}
                 </Link>
 
-                {/* single indicator that swims to the active link */}
+                {/* ---- single indicator that swims to the active link ---- */}
                 {isActive ? (
                   <motion.span
                     layoutId="toc-indicator"

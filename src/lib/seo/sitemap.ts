@@ -16,7 +16,7 @@ const STATIC_ROUTES: Record<RouteId, StaticRouteConfig> = {
   about: { priority: 0.9, changeFrequency: "weekly" },
   projects: { priority: 0.9, changeFrequency: "weekly" },
   skills: { priority: 0.9, changeFrequency: "monthly" },
-  blogs: { priority: 0.9, changeFrequency: "weekly" },
+  blog: { priority: 0.9, changeFrequency: "weekly" },
   contact: { priority: 0.9, changeFrequency: "yearly" },
 };
 
@@ -37,7 +37,7 @@ export function getSitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogEntries: MetadataRoute.Sitemap = getBlogPosts().map((post) => ({
-    url: `${SITE_URL}${ROUTES.blogs.href}/${post.slug}`,
+    url: `${SITE_URL}${ROUTES.blog.href}/${post.slug}`,
     lastModified: new Date(post.updated ?? post.dateTime),
     changeFrequency: "yearly",
     priority: 0.6,
@@ -47,7 +47,7 @@ export function getSitemap(): MetadataRoute.Sitemap {
 
   if (latestPost?.lastModified) {
     const blogsIndex = staticEntries.find(
-      (entry) => entry.url === `${SITE_URL}${ROUTES.blogs.href}`,
+      (entry) => entry.url === `${SITE_URL}${ROUTES.blog.href}`,
     );
 
     if (blogsIndex) {

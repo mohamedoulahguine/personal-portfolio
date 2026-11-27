@@ -13,17 +13,17 @@ import { NAV_ITEMS } from "@/data";
 
 import styles from "./Menu.module.scss";
 
+// ---- interfaces ----
 interface MenuProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   id?: string;
 }
 
-// ---- mobile menu  ----
+// ---- component ----
 export default function Menu({ isOpen, onOpenChange, id }: MenuProps) {
   const pathname = usePathname();
 
-  // ---- is active ----
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 

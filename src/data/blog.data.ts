@@ -2,6 +2,7 @@ import { OG_IMAGES } from "@/lib";
 import { getBlogPosts } from "@/server/blog.server";
 import type { AuthorId } from "./authors.data";
 
+// ---- interfaces ----
 export interface Blog {
   id: string;
   slug: string;
@@ -17,13 +18,12 @@ export interface Blog {
   section?: string;
 }
 
+// ---- constants ----
 const BLOGS = getBlogPosts();
-
 const PRIMARY_BLOGS = BLOGS.slice(0, 4);
-
 const REMAINING_BLOGS_COUNT = Math.max(BLOGS.length - PRIMARY_BLOGS.length, 0);
 
-// ---- sections ----
+// ---- section data ----
 export const BLOG_SECTION_DATA = {
   blogsHeadingId: "blogs-heading",
 
@@ -44,7 +44,7 @@ export const BLOG_META_DATA = {
   image: OG_IMAGES.blog,
 };
 
-// ---- page ----
+// ---- page data ----
 export const BLOG_PAGE_DATA = {
   headerPage: {
     title: "Blogs",

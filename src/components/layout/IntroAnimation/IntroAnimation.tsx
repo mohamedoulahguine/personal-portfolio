@@ -1,12 +1,13 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 import { LOGO_SEGMENTS, LOGO_VIEWBOX } from "../Logo/logoPath";
 
 import styles from "./IntroAnimation.module.scss";
 
+// ---- constants ----
 const DRAW_DURATION = 1.05;
 const LOGO_HOLD_DURATION = 0.15;
 const UNDRAW_DURATION = 0.65;
@@ -14,6 +15,7 @@ const LOGO_DURATION = DRAW_DURATION + LOGO_HOLD_DURATION + UNDRAW_DURATION;
 const DOOR_PAUSE_DURATION = 0.15;
 const DOOR_DELAY = LOGO_DURATION + DOOR_PAUSE_DURATION;
 const DOOR_DURATION = 0.8;
+const INTRO_FAILSAFE_MS = (DOOR_DELAY + DOOR_DURATION) * 1000 + 500;
 
 const TOTAL_LENGTH = LOGO_SEGMENTS.reduce(
   (sum, segment) => sum + segment.length,
@@ -21,9 +23,7 @@ const TOTAL_LENGTH = LOGO_SEGMENTS.reduce(
 );
 const LAST_INDEX = LOGO_SEGMENTS.length - 1;
 
-// Segments draw in order and undraw in reverse, each in proportion to its
-// length. Ease-in on the first piece and ease-out on the last keeps the speed
-// continuous where one segment hands off to the next.
+// ---- intro segments ----
 const INTRO_SEGMENTS = LOGO_SEGMENTS.map((segment, index) => {
   const startLength = LOGO_SEGMENTS.slice(0, index).reduce(
     (sum, previous) => sum + previous.length,
@@ -54,24 +54,71 @@ const INTRO_SEGMENTS = LOGO_SEGMENTS.map((segment, index) => {
   };
 });
 
+// ---- lock scroll ----
+function lockScroll() {
+  const html = document.documentElement;
+  const { body } = document;
+  const scrollY = window.scrollY;
+
+  html.style.overflow = "hidden";
+  body.style.overflow = "hidden";
+  body.style.position = "fixed";
+  body.style.insetInline = "0";
+  body.style.top = `-${scrollY}px`;
+  body.style.width = "100%";
+
+  return () => {
+    html.style.overflow = "";
+    body.style.overflow = "";
+    body.style.position = "";
+    body.style.insetInline = "";
+    body.style.top = "";
+    body.style.width = "";
+    window.scrollTo(0, scrollY);
+  };
+}
+
+// ---- component ----
 export default function IntroAnimation() {
+  const reduceMotion = useReducedMotion() === true;
   const [isVisible, setIsVisible] = useState(true);
+  const finishedRef = useRef(false);
+  const unlockScrollRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    if (!isVisible) {
+    const finishIntro = () => {
+      if (finishedRef.current) return;
+      finishedRef.current = true;
+
+      unlockScrollRef.current?.();
+      unlockScrollRef.current = null;
+      document.body.dataset.contentState = "entering";
+      setIsVisible(false);
+    };
+
+    if (reduceMotion) {
+      finishIntro();
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     document.body.dataset.contentState = "hidden";
+    unlockScrollRef.current = lockScroll();
+
+    const failsafe = window.setTimeout(finishIntro, INTRO_FAILSAFE_MS);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      window.clearTimeout(failsafe);
+      unlockScrollRef.current?.();
+      unlockScrollRef.current = null;
     };
-  }, [isVisible]);
+  }, [reduceMotion]);
 
-  const handleIntroComplete = () => {
+  const handleDoorComplete = () => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+
+    unlockScrollRef.current?.();
+    unlockScrollRef.current = null;
     document.body.dataset.contentState = "entering";
     setIsVisible(false);
   };
@@ -81,7 +128,12 @@ export default function IntroAnimation() {
   }
 
   return (
-    <div aria-hidden="true" className={styles.intro}>
+    <div
+      aria-hidden="true"
+      className={styles.intro}
+      onWheel={(event) => event.preventDefault()}
+      onTouchMove={(event) => event.preventDefault()}
+    >
       <motion.div
         initial={{ x: "0%" }}
         animate={{ x: "-100%" }}
@@ -107,7 +159,7 @@ export default function IntroAnimation() {
           duration: DOOR_DURATION,
           ease: [0.76, 0, 0.24, 1],
         }}
-        onAnimationComplete={handleIntroComplete}
+        onAnimationComplete={handleDoorComplete}
         style={{
           position: "absolute",
           inset: "0 0 0 auto",

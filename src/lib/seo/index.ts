@@ -32,6 +32,7 @@ export { rootViewport } from "./viewport";
 
 export {
   getPersonJsonLd,
+  getSiteOwnerJsonLd,
   getWebSiteJsonLd,
   getBlogPostingJsonLd,
   getBreadcrumbListJsonLd,

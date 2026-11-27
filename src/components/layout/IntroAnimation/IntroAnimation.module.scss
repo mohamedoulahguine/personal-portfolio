@@ -7,7 +7,10 @@
   display: grid;
   place-items: center;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
   pointer-events: auto;
+  user-select: none;
 
   &__logo {
     position: relative;
@@ -16,7 +19,7 @@
     overflow: visible;
 
     @include down(sm) {
-      width: min(41.6vw, rem(208));
+      width: min(40vw, rem(200));
     }
   }
 }

@@ -1,5 +1,6 @@
 @use "../../../assets/styles" as *;
 
+// ---- header page ----
 .headerPage {
   @include flex-column;
   align-items: center;
@@ -9,6 +10,7 @@
   padding-block: clamp($space-40, 6vw, $space-64);
   border: 0;
 
+  // ---- title ----
   &__title {
     font-family: $font-primary;
     color: var(--text-primary);
@@ -31,6 +33,7 @@
     }
   }
 
+  // ---- description ----
   &__description {
     font-family: $font-secondary;
     color: var(--text-secondary);

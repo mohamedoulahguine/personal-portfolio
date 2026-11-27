@@ -76,14 +76,21 @@ const defaultMdxComponents = {
 
     return (
       <figure className={styles["mdx__media"]}>
-        <Image
-          src={src}
-          alt={alt}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,800px"
-          quality={100}
-          className={styles["mdx__media-img"]}
-        />
-        <figcaption className={styles["mdx__media-caption"]}>{alt}</figcaption>
+        <div className={styles["mdx__media-frame"]}>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,800px"
+            quality={100}
+            className={styles["mdx__media-img"]}
+          />
+        </div>
+        {alt ? (
+          <figcaption className={styles["mdx__media-caption"]}>
+            {alt}
+          </figcaption>
+        ) : null}
       </figure>
     );
   },

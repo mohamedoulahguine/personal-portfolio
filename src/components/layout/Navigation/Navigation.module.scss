@@ -42,7 +42,7 @@
     // ---- active ----
     &--active {
       color: var(--text-inverse) !important;
-      background-color: var(--background-inverse);
+      background-color: var(--background-inverse) !important;
       font-weight: $fw-bold;
 
       &[data-pressed] {

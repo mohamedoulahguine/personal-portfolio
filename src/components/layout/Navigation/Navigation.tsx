@@ -7,25 +7,23 @@ import type { ClassNameProps } from "@/types";
 
 import styles from "./Navigation.module.scss";
 
+// ---- interfaces ----
 interface NavigationProps extends ClassNameProps {
   direction?: "horizontal" | "vertical";
   onNavigate?: () => void;
 }
 
-// ---- navigation ----
+// ---- component ----
 export default function Navigation({
   className,
   direction = "horizontal",
   onNavigate,
 }: NavigationProps) {
-  // ---- pathname ----
   const pathname = usePathname();
 
-  // ---- is active ----
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // ---- is vertical ----
   const isVertical = direction === "vertical";
 
   return (

@@ -6,6 +6,7 @@ import type { ClassNameProps } from "@/types";
 
 import styles from "./ArticleHeader.module.scss";
 
+// ---- interfaces ----
 interface BackLink {
   href: string;
   label: string;
@@ -24,7 +25,7 @@ interface ArticleHeaderProps extends ClassNameProps {
   publishedAt?: PublishedAt;
 }
 
-// ---- article header ----
+// ---- component ----
 export default function ArticleHeader({
   backTo,
   title,
@@ -57,14 +58,17 @@ export default function ArticleHeader({
 
       {/* ---- author ---- */}
       <address className={styles.articleHeader__author}>
-        <Image
-          src={author.avatar}
-          alt={`Portrait of ${author.name}`}
-          width={56}
-          height={56}
-          sizes="56px"
-          className={styles["articleHeader__author-avatar"]}
-        />
+        <figure className={styles["articleHeader__author-avatar"]}>
+          <Image
+            src={author.avatar}
+            alt={`Portrait of ${author.name}`}
+            width={64}
+            height={64}
+            quality={100}
+            sizes="(max-width: 768px) 56px, (max-width: 1200px) 60px, 64px"
+            className={styles["articleHeader__author-avatar-img"]}
+          />
+        </figure>
 
         <div className={styles["articleHeader__author-info"]}>
           <p className={styles["articleHeader__author-name"]}>
@@ -91,14 +95,7 @@ export default function ArticleHeader({
               <time dateTime={publishedAt.iso}>{publishedAt.display}</time>
             </li>
           ) : null}
-          {readingTime && publishedAt ? (
-            <span
-              className={styles["articleHeader__details-separator"]}
-              aria-hidden="true"
-            >
-              |
-            </span>
-          ) : null}
+
           {readingTime ? (
             <li className={styles["articleHeader__details-item"]}>
               <FaRegClock aria-hidden="true" />

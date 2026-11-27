@@ -1,0 +1,41 @@
+@use "../assets/styles" as *;
+
+.notFound {
+  @include container;
+  @include flex-center;
+  flex-direction: column;
+  gap: clamp($space-24, 4vw, $space-40);
+  border: 0;
+  min-height: 100%;
+
+  &__mark {
+    font-family: $font-quaternary;
+    font-size: clamp(rem(72), 18vw, rem(180));
+    font-weight: $fw-bold;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--primary);
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  &__nudge {
+    font-family: $font-secondary;
+    font-size: clamp($font-size-14, 2vw, $font-size-18);
+    font-weight: $fw-medium;
+    line-height: $line-height-relaxed;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    max-width: 55ch;
+    text-align: center;
+
+    &__hint {
+      font-family: inherit;
+      font-size: clamp($font-size-14, 2vw, $font-size-18);
+      font-weight: $fw-bold;
+      line-height: $line-height-relaxed;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+  }
+}

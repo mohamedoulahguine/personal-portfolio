@@ -6,22 +6,24 @@ import { ROUTES } from "@/data";
 
 import styles from "./BlogsGrid.module.scss";
 
+// ---- interfaces ----
 type BlogsGridVariant = "primary" | "all";
+interface BlogsGridProps {
+  variant?: BlogsGridVariant;
+}
 
+// ---- utility function to get the blog card visual ----
 function BlogCardVisual({ slug }: { slug: string }) {
   const Visual = blogCardVisuals[slug];
 
   return Visual ? <Visual /> : null;
 }
 
-interface BlogsGridProps {
-  variant?: BlogsGridVariant;
-}
-
+// ---- data ----
 const { primaryBlogs } = BLOG_SECTION_DATA;
 const { blogs: blogsData } = BLOG_PAGE_DATA;
 
-// ---- blogs grid ----
+// ---- component ----
 export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
   const blogs = variant === "primary" ? primaryBlogs : blogsData;
 
@@ -31,7 +33,7 @@ export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
         blogs.map((blog) => (
           <li key={blog.id} className={styles.blogs__card}>
             <Link
-              href={`${ROUTES.blogs.href}/${blog.slug}`}
+              href={`${ROUTES.blog.href}/${blog.slug}`}
               variant="plain"
               className={styles.blogs__link}
               aria-label={`Read blog post: ${blog.title}`}
@@ -71,7 +73,7 @@ export default function BlogsGrid({ variant = "all" }: BlogsGridProps) {
         ))
       ) : (
         <li className={styles.blogs__empty} role="alert">
-          <p>Nothing to see here yet.</p>
+          <p>Content will appear here soon.</p>
         </li>
       )}
     </ol>

@@ -39,7 +39,7 @@ import {
 import { CgPerformance, CgSmartphone } from "react-icons/cg";
 import { FaMasksTheater } from "react-icons/fa6";
 
-// ---- skill interface ----
+// ---- interface ----
 export interface Skill {
   id: string;
   name: string;
@@ -456,11 +456,11 @@ const SKILLS: Skill[] = [
   },
 ];
 
-// ---- here are some constants ----
+// ---- constants ----
 const PRIMARY_SKILLS = SKILLS.filter((skill) => skill.isPrimary);
 const REMAINING_SKILLS_COUNT = SKILLS.length - PRIMARY_SKILLS.length;
 
-// ---- sections ----
+// ---- section data ----
 export const SKILLS_SECTION_DATA = {
   skillsHeadingId: "skills-heading",
 
@@ -480,7 +480,7 @@ export const SKILLS_META_DATA = {
     "Here you'll find the technologies I work with regularly. I've left out the ones I rarely use and the ones I'm still learning.",
   image: "/open-graph-image/skills Page.png",
 };
-// ---- page ----
+// ---- page data ----
 export const SKILLS_PAGE_DATA = {
   headerPage: {
     title: "Skills",

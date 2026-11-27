@@ -9,7 +9,7 @@ import { FaBluesky } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { BLOG_RSS_PATH } from "@/lib/seo/site";
 
-// ---- types ----
+// ---- interfaces ----
 export type SocialLinkId =
   | "linkedin"
   | "bluesky"
@@ -17,7 +17,6 @@ export type SocialLinkId =
   | "email"
   | "website"
   | "rss";
-
 export interface SocialLink {
   id: SocialLinkId;
   label: string;
@@ -25,13 +24,13 @@ export interface SocialLink {
   external: boolean;
   icon: IconType;
 }
-
 interface SocialProfileConfig {
   label: string;
   icon: IconType;
   external: boolean;
 }
 
+// ---- markup for the social profiles data ----
 const SOCIAL_PROFILES: Record<SocialLinkId, SocialProfileConfig> = {
   linkedin: { label: "LinkedIn", icon: FaLinkedin, external: true },
   bluesky: { label: "BlueSky", icon: FaBluesky, external: true },
@@ -41,7 +40,7 @@ const SOCIAL_PROFILES: Record<SocialLinkId, SocialProfileConfig> = {
   rss: { label: "RSS", icon: FaRss, external: false },
 };
 
-// ---- factory ----
+// ---- utility function to create a social link ----
 export function createSocialLink(
   id: SocialLinkId,
   href: string,

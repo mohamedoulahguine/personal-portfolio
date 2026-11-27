@@ -5,10 +5,12 @@ import { Link as RACLink } from "react-aria-components";
 import { ActionsButton } from "@/components";
 import type { LinkProps } from "@/types";
 
+// ---- helpers ----
 function isInternalHref(href: string) {
   return href.startsWith("/") && !href.startsWith("//");
 }
 
+// ---- component ----
 export default function Link({
   ref,
   icon,

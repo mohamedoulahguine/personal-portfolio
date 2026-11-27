@@ -5,9 +5,10 @@ import type { TooltipProps } from "@/types";
 
 import styles from "./Tooltip.module.scss";
 
+// ---- motion components ----
 export { TooltipTrigger };
 
-// ---- tooltip ----
+// ---- component ----
 export default function Tooltip({
   children,
   className = "",

@@ -8,6 +8,7 @@ html {
   font-size: $base-font-size;
   font-weight: $fw-medium;
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) transparent;
 
@@ -41,12 +42,12 @@ body {
 }
 
 // ---- page content entrance ----
-body[data-content-state="hidden"] main {
+body[data-content-state="hidden"] :is(#main-content, #main-footer) {
   opacity: 0;
   transform: translateY(20px);
 }
 
-body[data-content-state="entering"] main {
+body[data-content-state="entering"] :is(#main-content, #main-footer) {
   animation: page-content-fade-up 300ms ease-in-out 2ms both;
 }
 
@@ -63,7 +64,7 @@ body[data-content-state="entering"] main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body[data-content-state] main {
+  body[data-content-state] :is(#main-content, #main-footer) {
     opacity: 1;
     transform: none;
     animation: none;
@@ -73,25 +74,6 @@ body[data-content-state="entering"] main {
 .page__container {
   @include container;
   @include flex-column;
-  gap: clamp($space-24, 3vw, $space-32);
-}
-
-.not-found {
-  &__container {
-    @include container;
-    @include flex-center;
-    flex-direction: column;
-    gap: clamp($space-16, 2vw, $space-24);
-    text-align: center;
-    height: 100%;
-  }
-
-  &__hint {
-    font-family: $font-secondary;
-    font-size: clamp(rem(30), 4vw, rem(50));
-    color: var(--text-secondary);
-    max-width: 55ch;
-  }
 }
 
 // ---- headings ----

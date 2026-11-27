@@ -5,6 +5,7 @@ import { getResolvedThemeFromDocument } from "@/lib";
 
 import styles from "./ThemeSelector.module.scss";
 
+// ---- helpers ----
 function runThemeTransition(update: () => void) {
   if (typeof document.startViewTransition === "function") {
     document.startViewTransition(update);
@@ -14,6 +15,7 @@ function runThemeTransition(update: () => void) {
   update();
 }
 
+// ---- component ----
 export default function ThemeSelector() {
   const { setTheme } = useTheme();
 

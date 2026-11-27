@@ -2,12 +2,13 @@ import type { ClassNameProps } from "@/types";
 
 import styles from "./HeaderPage.module.scss";
 
+// ---- interfaces ----
 interface HeaderPageProps extends ClassNameProps {
   title: string;
   description?: string;
 }
 
-// ---- header page ----
+// ---- component ----
 export default function HeaderPage({
   title,
   description,

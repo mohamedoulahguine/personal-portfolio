@@ -27,14 +27,12 @@ import type { DropdownMenuItemProps, DropdownMenuProps } from "@/types";
 
 import styles from "./DropdownMenu.module.scss";
 
-export { MenuTrigger };
-
 // ---- motion components ----
+export { MenuTrigger };
 const MotionPopover = motion.create(Popover);
 
-// ---- motion transitions ----
+// ---- constants ----
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
-// same motion as before — only these timings are shorter
 const ITEM_STAGGER = 0.06;
 const ITEM_STAGGER_START = 0.06;
 const ITEM_DURATION = 0.22;
@@ -45,7 +43,7 @@ const getRevealDuration = (itemCount: number) =>
   Math.max(itemCount - 1, 0) * ITEM_STAGGER +
   ITEM_DURATION;
 
-// ---- popover variants ----
+// ---- motion variants for popover ----
 const POPOVER_VARIANTS: Variants = {
   hidden: { opacity: 0, y: -6, scale: 0.98, height: 0 },
   visible: (itemCount: number) => ({
@@ -62,7 +60,7 @@ const POPOVER_VARIANTS: Variants = {
   }),
 };
 
-// ---- popover exit variants ----
+// ---- motion exit variants for popover when it is exiting ----
 const POPOVER_EXIT = {
   opacity: 0,
   y: -4,
@@ -70,7 +68,7 @@ const POPOVER_EXIT = {
   transition: { duration: 0.12, ease: "easeIn" },
 } as const;
 
-// ---- item variants ----
+// ---- motion variants for menu items ----
 const ITEM_VARIANTS: Variants = {
   hidden: { opacity: 0, y: -15 },
   visible: {
@@ -80,7 +78,7 @@ const ITEM_VARIANTS: Variants = {
   },
 };
 
-// ---- trigger icon motion variants ----
+// ---- motion variants for trigger icon ----
 const TRIGGER_ICON_MOTION = {
   initial: { opacity: 0, rotate: -90, scale: 0.3 },
   animate: { opacity: 1, rotate: 0, scale: 1 },
@@ -88,7 +86,7 @@ const TRIGGER_ICON_MOTION = {
   transition: { duration: 0.3, ease: EASE_OUT_EXPO },
 } as const;
 
-// ---- trigger icon: swaps to a close icon while the menu is open ----
+// ---- component: swaps to a close icon while the menu is open ----
 export function DropdownTriggerIcon({ icon }: { icon: ReactNode }) {
   const isOpen = useContext(OverlayTriggerStateContext)?.isOpen ?? false;
 
@@ -108,7 +106,7 @@ export function DropdownTriggerIcon({ icon }: { icon: ReactNode }) {
   );
 }
 
-// ---- dropdown menu ----
+// ---- component ----
 export default function DropdownMenu(props: DropdownMenuProps) {
   const triggerState = useContext(OverlayTriggerStateContext);
 
@@ -123,7 +121,7 @@ export default function DropdownMenu(props: DropdownMenuProps) {
   );
 }
 
-// ---- dropdown menu content ----
+// ---- component: dropdown menu content ----
 function DropdownMenuContent({
   children,
   orientation = "vertical",
@@ -198,7 +196,7 @@ function DropdownMenuContent({
   );
 }
 
-// ---- dropdown menu item ----
+// ---- component: dropdown menu item ----
 export function DropdownMenuItem({
   children,
   className = "",

@@ -1,3 +1,5 @@
+import { animate } from "motion";
+
 export type ToastVariant = "success" | "error";
 
 const TOAST_ID = "app-toast";
@@ -7,9 +9,12 @@ const TOAST_MARKER: Record<ToastVariant, string> = {
   error: "var(--danger)",
 };
 
+let dismissTimer: number | undefined;
+
 export function addToast(message: string, variant: ToastVariant = "success") {
   if (typeof document === "undefined") return;
 
+  window.clearTimeout(dismissTimer);
   document.getElementById(TOAST_ID)?.remove();
 
   const toast = document.createElement("div");
@@ -36,5 +41,7 @@ export function addToast(message: string, variant: ToastVariant = "success") {
 
   document.body.appendChild(toast);
 
-  window.setTimeout(() => toast.remove(), 4000);
+  animate(toast, { opacity: [0, 1], y: [16, 0] }, { duration: 0.35 });
+
+  dismissTimer = window.setTimeout(() => toast.remove(), 4000);
 }

@@ -1,5 +1,6 @@
 @use "../../../assets/styles" as *;
 
+// ---- theme selector ----
 .themeSelector {
   @include down(md) {
     margin-left: auto;

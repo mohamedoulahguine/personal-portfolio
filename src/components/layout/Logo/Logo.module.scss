@@ -1,8 +1,6 @@
 @use "../../../assets/styles" as *;
 
 .logo {
-  // overflow: hidden;
-
   &[data-pressed] {
     transform: none !important;
   }
@@ -10,10 +8,5 @@
   &__container {
     width: clamp(45px, 4vw, 55px);
     transform: translateY(3px);
-  }
-
-  svg {
-    width: 100%;
-    height: 100%;
   }
 }

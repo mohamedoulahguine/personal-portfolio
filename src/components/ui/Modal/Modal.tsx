@@ -20,13 +20,12 @@ import type { ModalProps } from "@/types";
 
 import styles from "./Modal.module.scss";
 
-export { DialogTrigger };
-
 // ---- motion components ----
+export { DialogTrigger };
 const MotionModalOverlay = motion.create(ModalOverlay);
 const MotionDialog = motion.create(Dialog);
 
-// ---- motion transitions ----
+// ---- constants ----
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 const LAYOUT_TRANSITION = {
   type: "spring",
@@ -35,7 +34,7 @@ const LAYOUT_TRANSITION = {
   mass: 1,
 } as const;
 
-// ---- this is for the modal content ----
+// ---- motion variants for modal content ----
 const PANEL_MOTION = {
   initial: { opacity: 0, y: 20 },
   animate: {
@@ -46,13 +45,14 @@ const PANEL_MOTION = {
   exit: { opacity: 0, y: 20, transition: { duration: 0.15 } },
 };
 
+// ---- motion variants for modal panel ----
 const CONTENT_MOTION = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { delay: 0.2, duration: 0.25 } },
   exit: { opacity: 0, transition: { duration: 0.1 } },
 };
 
-// ---- modal ----
+// ---- component ----
 export default function Modal(props: ModalProps) {
   const triggerState = useContext(OverlayTriggerStateContext);
 
@@ -67,7 +67,7 @@ export default function Modal(props: ModalProps) {
   );
 }
 
-// ---- modal content ----
+// ---- component: modal content ----
 function ModalContent({
   children,
   size = "md",

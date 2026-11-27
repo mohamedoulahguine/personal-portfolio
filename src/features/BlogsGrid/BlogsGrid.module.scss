@@ -39,6 +39,7 @@
 
   &__visual {
     width: 100%;
+    border: 0.068rem solid var(--border-strong);
   }
 
   &__content {
@@ -54,9 +55,9 @@
     }
 
     &-description {
-      font-family: $font-primary;
+      font-family: $font-secondary;
       font-size: clamp($font-size-14, 2vw, $font-size-16);
-      font-weight: $fw-regular;
+      font-weight: $fw-medium;
       line-height: $line-height-normal;
       color: var(--text-secondary);
       max-width: 60ch;
@@ -79,23 +80,15 @@
         flex-wrap: nowrap;
         align-items: center;
         gap: $space-4;
-        font-family: $font-secondary;
-        font-size: clamp($font-size-12, 1vw, $font-size-14);
+        font-family: $font-primary;
+        font-size: clamp($font-size-10, 1vw, $font-size-12);
         font-weight: $fw-semibold;
-        color: var(--text-tertiary);
-      }
-
-      &--readingTimeIcon {
-        flex-shrink: 0;
-        font-size: clamp($font-size-12, 1vw, $font-size-14);
+        color: var(--text-secondary);
       }
 
       &--date {
-        font-family: $font-secondary;
-        font-size: clamp($font-size-12, 1vw, $font-size-14);
-        font-weight: $fw-semibold;
-        color: var(--text-tertiary);
-        white-space: nowrap;
+        font-size: clamp($font-size-10, 1vw, $font-size-12);
+        color: var(--text-secondary);
       }
     }
   }

@@ -1,12 +1,11 @@
 @use "../../../assets/styles" as *;
 
 .articleHeader {
-  @include container;
   @include flex-column;
+  @include hairline-border-bottom;
   gap: clamp($space-24, 2.5vw, $space-32);
   width: 100%;
   padding: $space-8 $space-10 $space-10;
-  border: 0;
 
   // ---- breadcrumb ----
   &__breadcrumb {
@@ -60,8 +59,12 @@
     @include square(clamp(48px, 5vw, 60px));
     border-radius: 50%;
     object-fit: cover;
-    @include unselectable-media;
-    border: 1px solid var(--border);
+    background-color: var(--image-background);
+    overflow: hidden;
+
+    &-img {
+      @include cover-image;
+    }
   }
 
   &__author-info {
@@ -102,10 +105,8 @@
 
   // ---- details (reading time + published) ----
   &__details {
-    @include flex-center;
-    justify-content: flex-start;
+    @include flex-between;
     gap: $space-8;
-    width: fit-content;
 
     &-separator {
       font-family: $font-secondary;

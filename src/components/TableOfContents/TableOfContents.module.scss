@@ -9,13 +9,14 @@
   padding: clamp($space-12, 2vw, $space-16);
   border: 1px solid;
   border-color: transparent;
-  max-width: rem(300);
   width: 100%;
+  max-width: rem(360);
 
   @include up(xl) {
     border-color: var(--border);
     position: sticky;
     top: 120px;
+    max-width: none;
   }
 
   // ---- title ----

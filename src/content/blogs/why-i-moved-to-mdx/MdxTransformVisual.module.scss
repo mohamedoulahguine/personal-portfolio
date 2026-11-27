@@ -5,7 +5,6 @@
   width: 100%;
   height: clamp(180px, 24vw, 230px);
   overflow: hidden;
-  border: 1px solid var(--border);
   contain: layout paint;
   pointer-events: none;
   user-select: none;

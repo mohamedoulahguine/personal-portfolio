@@ -22,7 +22,7 @@ export default function Blog() {
           link={
             remainingBlogsCount > 0
               ? {
-                  href: ROUTES.blogs.href,
+                  href: ROUTES.blog.href,
                   label: "View all posts",
                   ariaLabel: `View all posts, ${remainingBlogsCount} more`,
                 }

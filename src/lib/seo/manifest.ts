@@ -34,8 +34,8 @@ const MANIFEST_SHORTCUTS: {
       "Browse my Next.js and TypeScript projects with live demos and code",
   },
   {
-    id: "blogs",
-    name: ROUTES.blogs.label,
+    id: "blog",
+    name: ROUTES.blog.label,
     description: "Articles and notes on software development",
   },
   {

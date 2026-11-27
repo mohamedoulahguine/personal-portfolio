@@ -11,7 +11,7 @@ import {
 
 import "../../assets/styles/main.scss";
 
-export const metadata = createPageMetadata(ROUTES.blogs.href, BLOG_META_DATA);
+export const metadata = createPageMetadata(ROUTES.blog.href, BLOG_META_DATA);
 
 // ---- blog page ----
 export default function BlogPage() {
@@ -22,7 +22,7 @@ export default function BlogPage() {
 
   const jsonLd = [
     getCollectionPageJsonLd({
-      routeId: "blogs",
+      routeId: "blog",
       pageType: "Blog",
       itemType: "BlogPosting",
       name: title,
@@ -30,10 +30,10 @@ export default function BlogPage() {
       items: blogs.map((post) => ({
         name: post.title,
         description: post.description,
-        url: `${ROUTES.blogs.href}/${post.slug}`,
+        url: `${ROUTES.blog.href}/${post.slug}`,
       })),
     }),
-    getRouteBreadcrumbJsonLd("blogs"),
+    getRouteBreadcrumbJsonLd("blog"),
   ];
 
   return (

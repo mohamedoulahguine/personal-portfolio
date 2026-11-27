@@ -1,30 +1,23 @@
-@use "sass:math";
 @use "../../../assets/styles" as *;
 
 // ---- article layout ----
 .layout {
-  @include section;
   @include flex-column;
   position: relative;
-  margin-top: clamp($space-16, 2vw, $space-24);
-
-  @include down(xl) {
-    @include container;
-    width: fit-content !important;
-    max-width: fit-content !important;
-    padding-block: 0;
-  }
+  width: min(100%, $container-width);
+  margin-inline: auto;
+  margin-block-start: clamp($space-16, 2vw, $space-24);
 
   // ---- content ----
   &__content {
     @include flex-column;
-    @include container;
+    width: 100%;
     gap: clamp($space-32, 4vw, $space-48);
     order: 3;
     counter-reset: counter;
     padding: clamp($space-8, 1.5vw, $space-12);
+    background-color: var(--background);
 
-    // this is for the scroll-margin-block-start of the sections
     section[id] {
       scroll-margin-block-start: clamp($space-64, 8vw, $space-96);
     }
@@ -37,8 +30,10 @@
     @include up(xl) {
       position: absolute;
       inset-block: $space-16 0;
-      inset-inline-start: calc(
-        50% + #{math.div($container-width, 2)} + #{$space-24}
+      inset-inline-start: calc(100% + #{$space-24});
+      width: min(
+        rem(360),
+        max(rem(220), calc((100vw - #{$container-width}) / 2 - #{$space-40}))
       );
     }
   }

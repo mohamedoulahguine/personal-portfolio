@@ -5,10 +5,11 @@ import {
   type SocialLink,
 } from "./social-links.data";
 
-// ---- author ----
+// ---- constants ----
 export const AUTHOR_IDS = ["mohamedoulahguine"] as const;
-export type AuthorId = (typeof AUTHOR_IDS)[number];
 
+// ---- interfaces ----
+export type AuthorId = (typeof AUTHOR_IDS)[number];
 export interface Author {
   id: AuthorId;
   name: string;
@@ -17,6 +18,7 @@ export interface Author {
   socials: SocialLink[];
 }
 
+// ---- here where we define the authors ----
 export const AUTHORS: Record<AuthorId, Author> = {
   mohamedoulahguine: {
     id: "mohamedoulahguine",
@@ -27,13 +29,15 @@ export const AUTHORS: Record<AuthorId, Author> = {
   },
 };
 
+// ---- this one is only used for the owner profile ----
 export const DEFAULT_AUTHOR_ID: AuthorId = "mohamedoulahguine";
 
-// ---- helpers ----
+// ---- utility functions ----
 export function isAuthorId(value: string): value is AuthorId {
   return (AUTHOR_IDS as readonly string[]).includes(value);
 }
 
+// ---- utility function to get an author by id ----
 export function getAuthor(id: AuthorId): Author {
   const author = AUTHORS[id];
 

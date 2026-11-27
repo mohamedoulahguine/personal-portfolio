@@ -17,10 +17,6 @@
     min-width: 0;
     background-color: var(--background);
 
-    &--modal {
-      background-color: var(--surface);
-    }
-
     &-meta {
       @include flex-between;
       border-bottom: 0;

@@ -10,10 +10,10 @@
 // ---- screen readers ----
 @mixin sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.063rem;
+  height: 0.063rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.063rem;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
@@ -65,30 +65,30 @@
 }
 
 // ---- border color ----
-$border-color: var(--border-strong);
+$border-color: var(--border);
 
 // ---- site chrome ----
 @mixin surface-border {
-  border: 1px solid $border-color;
+  border: 0.063rem solid $border-color;
 }
 
 // ---- hairline gap ----
 @mixin hairline-gap {
-  gap: 1px;
+  gap: 0.063rem;
   background-color: $border-color;
 }
 
 // ---- hairline grid rules ----
 @mixin hairline-grid-rules {
-  @supports (row-rule: 1px solid $border-color) {
+  @supports (row-rule: 0.063rem solid $border-color) {
     background-color: transparent;
-    column-rule: 1px solid $border-color;
-    row-rule: 1px solid $border-color;
+    column-rule: 0.063rem solid $border-color;
+    row-rule: 0.063rem solid $border-color;
   }
 }
 
 @mixin hairline-border-bottom {
-  border-bottom: 1px solid $border-color;
+  border-bottom: 0.063rem solid $border-color;
 }
 
 // ---- hairline cell grid ----
@@ -100,7 +100,8 @@ $border-color: var(--border-strong);
 // ---- container ----
 @mixin container {
   max-width: $container-width;
-  margin: $space-16 auto;
+  margin: clamp($space-8, 2vw, $space-12) auto;
+  background-color: var(--background);
   @include surface-border;
 }
 

@@ -19,6 +19,7 @@ export function generateStaticParams() {
   return getBlogPosts().map(({ slug }) => ({ slug }));
 }
 
+// this is for the blog post page SEO
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -27,9 +28,10 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     return {};
   }
 
+  // here we get the author of the blog post
   const author = getAuthor(post.authorId);
 
-  return createPageMetadata(`${ROUTES.blogs.href}/${post.slug}`, {
+  return createPageMetadata(`${ROUTES.blog.href}/${post.slug}`, {
     variant: "article",
     title: post.title,
     description: post.description,
@@ -80,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       wordCount: post.wordCount,
       keywords: post.tags,
     }),
-    getRouteBreadcrumbJsonLd("blogs", post.title),
+    getRouteBreadcrumbJsonLd("blog", post.title),
   ];
 
   return (
@@ -89,7 +91,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <ArticleLayout
         header={
           <ArticleHeader
-            backTo={{ href: ROUTES.blogs.href, label: ROUTES.blogs.label }}
+            backTo={{ href: ROUTES.blog.href, label: ROUTES.blog.label }}
             title={post.title}
             author={author}
             readingTime={post.readingTime}

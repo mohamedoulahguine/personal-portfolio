@@ -65,7 +65,7 @@
 .item {
   @include rac-touch;
   display: flex;
-  padding: clamp($space-10, 2vw, $space-12) clamp($space-10, 2vw, $space-12);
+  padding: clamp($space-12, 2vw, $space-14) clamp($space-10, 2vw, $space-12);
   color: var(--text-primary);
   font-family: $font-primary;
   font-size: clamp($font-size-16, 2vw, $font-size-18);

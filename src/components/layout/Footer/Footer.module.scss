@@ -5,11 +5,22 @@
 
   &__container {
     @include container;
-    @include flex-center;
-    flex-direction: column;
-    gap: clamp($space-16, 2vw, $space-24);
     border: 0;
     margin-top: clamp(rem(32), 5vw, rem(64));
+    position: relative;
+    padding-bottom: clamp($space-12, 2vw, $space-16);
+  }
+
+  &__content {
+    @include flex-column;
+    align-items: center;
+    gap: clamp($space-4, 1vw, $space-8);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 100%;
   }
 
   &__copyright {
@@ -17,5 +28,26 @@
     font-size: clamp($font-size-14, 2vw, $font-size-16);
     font-weight: $fw-semibold;
     color: var(--text-primary);
+    text-align: center;
+  }
+
+  &__illustration {
+    position: relative;
+    width: 100%;
+    height: clamp(130px, 20vw, 170px);
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 10%, black 20%, transparent);
+  }
+
+  &__illustration-image {
+    object-fit: cover;
+    object-position: bottom;
+  }
+}
+
+:global(html[data-theme="dark"]) {
+  .footer__illustration-image {
+    filter: invert(1);
   }
 }
